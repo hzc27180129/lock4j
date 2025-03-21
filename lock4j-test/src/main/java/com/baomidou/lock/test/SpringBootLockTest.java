@@ -289,5 +289,19 @@ public class SpringBootLockTest {
         }
         Thread.sleep(Long.MAX_VALUE);
     }
-
+    @SneakyThrows
+    @Test
+    public void aaa(){
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                userService.aaa();
+            }
+        };
+        for (int i = 0; i < 5; i++) {
+            executorService.submit(task);
+        }
+        Thread.sleep(Long.MAX_VALUE);
+    }
 }

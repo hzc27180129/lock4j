@@ -23,6 +23,7 @@ import com.baomidou.lock.LockTemplate;
 import com.baomidou.lock.annotation.LocalLock;
 import com.baomidou.lock.annotation.Lock4j;
 import com.baomidou.lock.annotation.RedissonLock;
+import com.baomidou.lock.executor.EtcdLockExecutor;
 import com.baomidou.lock.executor.RedisTemplateLockExecutor;
 import com.baomidou.lock.executor.RedissonLockExecutor;
 import com.baomidou.lock.test.custom.CustomLockFailureStrategy2;
@@ -232,4 +233,14 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+    @Override
+    @Lock4j(keys ="1",expire = -1,executor = EtcdLockExecutor.class)
+    public void aaa() {
+        System.out.println("执行aaa方法 , 当前线程:" + Thread.currentThread().getName() + " , counter：" + (counter++));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

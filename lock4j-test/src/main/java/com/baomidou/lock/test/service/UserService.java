@@ -16,7 +16,9 @@
 
 package com.baomidou.lock.test.service;
 
+import com.baomidou.lock.annotation.Lock4j;
 import com.baomidou.lock.annotation.RedisLock;
+import com.baomidou.lock.executor.EtcdLockExecutor;
 import com.baomidou.lock.test.model.User;
 
 /**
@@ -56,4 +58,6 @@ public interface UserService {
     void customLockFailureStrategy();
 
     void customLockFailureStrategy2();
+
+    void aaa();
 }
